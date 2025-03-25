@@ -1,14 +1,12 @@
-# Powiększenie obrazu dwukrotnie
-# a. Powiększ obraz 2× zarówno w pionie, jak i w poziomie.
-# b. Użyj metody cv2.INTER_LINEAR .
+# Odbicie pionowe
+# a. Wykonaj odbicie lustrzane w pionie.
+# b. Porównaj wynik z obrazem oryginalnym.
 
 import cv2
 
-image = cv2.imread("image_small.jpg")
+image = cv2.imread("image.jpg")
 cv2.imshow("Original", image)
 
-(h, w) = image.shape[:2]
-
-resized = cv2.resize(image, (w*2, h*2), interpolation=cv2.INTER_LINEAR)
-cv2.imshow("Resized", resized)
+flipped = cv2.flip(image, 0)
+cv2.imshow("Flipped Vertically", flipped)
 cv2.waitKey(0)

@@ -1,5 +1,5 @@
-# Zmniejszenie obrazu o połowę
-# a. Wczytaj obraz i zmniejsz jego szerokość oraz wysokość o 50%.
+# Odbicie poziome
+# a. Wczytaj obraz i wykonaj odbicie lustrzane w poziomie.
 # b. Wyświetl wynik.
 
 import cv2
@@ -7,8 +7,6 @@ import cv2
 image = cv2.imread("image.jpg")
 cv2.imshow("Original", image)
 
-(h, w) = image.shape[:2]
-
-resized = cv2.resize(image, (w//2, h//2), interpolation=cv2.INTER_AREA)
-cv2.imshow("Resized", resized)
+flipped = cv2.flip(image, 1)
+cv2.imshow("Flipped Horizontally", flipped)
 cv2.waitKey(0)

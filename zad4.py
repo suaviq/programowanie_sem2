@@ -1,22 +1,22 @@
-# Porównanie różnych metod interpolacji
-# a. Powiększ obraz 3× przy użyciu różnych metod interpolacji ( INTER_NEAREST ,
-# INTER_LINEAR , INTER_CUBIC , INTER_LANCZOS4 ).
-# b. Wyświetl i porównaj wyniki.
+# Porównanie efektów
+# a. Wyświetl cztery wersje obrazu:
+# i. Oryginał
+# ii. Odbicie poziome
+# iii. Odbicie pionowe
+# iv. Odbicie względem obu osi
 
 import cv2
-import imutils 
 
-image = cv2.imread("image_small.jpg")
-cv2.imshow("Original", image)
+image = cv2.imread("image.jpg")
 
-methods = [
-("cv2.INTER_NEAREST", cv2.INTER_NEAREST),
-("cv2.INTER_LINEAR", cv2.INTER_LINEAR),
-("cv2.INTER_CUBIC", cv2.INTER_CUBIC),
-("cv2.INTER_LANCZOS4", cv2.INTER_LANCZOS4)]
+flipping = [
+    ('Original', image),
+    ('Odbicie poziome', cv2.flip(image, 1)),
+    ('Odbicie pionowe', cv2.flip(image, 0)),
+    ('Odbicie względem obu osi', cv2.flip(image, -1))
+]
 
-for (name, method) in methods:
+for (name, flip) in flipping:
     print("[INFO] {}".format(name))
-    resized = imutils.resize(image, width=image.shape[1] * 3, inter=method)
-    cv2.imshow("Method: {}".format(name), resized)
+    cv2.imshow("{}".format(name), flip)
     cv2.waitKey(0)
